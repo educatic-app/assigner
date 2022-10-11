@@ -1,0 +1,4 @@
+prisma/database.db
+
+node_modules/
+dist/

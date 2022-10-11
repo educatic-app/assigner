@@ -1,0 +1,37 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "sqlite"
+    url      = "file:./database.db"
+}
+
+model HomeworkAssignment {
+    id              String @id @default(uuid())
+    exercises       HomeworkExercise[]
+
+    important       Boolean?
+    subjectID       String
+
+    assignedAt      BigInt
+    dueAt           BigInt?
+}
+
+model HomeworkExercise {
+    id              String @id @default(uuid())
+    label           String
+    description     String?
+
+    completed       Boolean
+    completedAt     BigInt
+
+    entryID         String
+    entry           HomeworkAssignment @relation(fields: [entryID], references: [id])
+}
+
+model Subject {
+    id              String @id @default(uuid())
+    name            String
+    color           String? @default("#637180")
+}
