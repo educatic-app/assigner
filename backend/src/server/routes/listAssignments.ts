@@ -26,17 +26,19 @@ export default async ( server:Server, req:Request, res:Response ) => {
                 subjectID: a.subjectID,
 
                 assignedAt: Number(a.assignedAt),
-                dueAt:      Number(a.dueAt || 0)
+                dueAt:      Number(a.dueAt || 0),
+
+                taskDetails: generateTaskDetails(a.exercises)
             }
         })
     });
 }
 
-function generateTaskInfo(e) {
+function generateTaskDetails(t) {
     let completed = 0;
-    let total = e.length;
+    let total = t.length;
 
-    for(var ex of e) {
+    for(var ex of t) {
         if(ex.completed === true) completed++
     }
 
