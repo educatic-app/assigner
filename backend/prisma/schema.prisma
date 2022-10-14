@@ -10,6 +10,7 @@ datasource db {
 model HomeworkAssignment {
     id              String @id @default(uuid())
     exercises       HomeworkExercise[]
+    text            String?
 
     important       Boolean?
     subjectID       String
@@ -24,7 +25,7 @@ model HomeworkExercise {
     description     String?
 
     completed       Boolean
-    completedAt     BigInt
+    completedAt     BigInt?
 
     entryID         String
     entry           HomeworkAssignment @relation(fields: [entryID], references: [id])
